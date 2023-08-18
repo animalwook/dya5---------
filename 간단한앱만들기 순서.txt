@@ -1,0 +1,35 @@
+cmd에서
+
+python -m venv django_env
+.\django_env\Scripts\activate.bat
+
+pip install django
+django-admin startproject myproject
+cd board
+
+python manage.py startapp board_app
+기본보드만들고 setting에  'board_app' 넣기
+templates\board_app\[파일명]
+
+프로젝트 urls.py에 파일 연결, include 임포트
+    from django.contrib import admin
+    from django.urls import path, include
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('', include('board_app.urls'))
+    ]
+
+앱레벨
+from django.urls import path, include
+
+urlpatterns = [
+    path('', views.article_list, name='article_list')
+]
+
+
+
+--------------------
+python manage.py migrate
+-sqlite3설치
+python manage.py runserver
